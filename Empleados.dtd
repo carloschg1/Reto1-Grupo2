@@ -1,0 +1,12 @@
+<!ELEMENT Empleados (Empleado+)>
+    <!ELEMENT Empleado (NIF, Nombre, Apellido1, Apellido2, cuenta, Antigüedad, N._de_afiliación_a_la_Seguridad_Social, Categoría-Grupo_profesional, Grupo_Cotización, email)>
+        <!ELEMENT NIF (#PCDATA)>
+        <!ELEMENT Nombre (#PCDATA)>
+        <!ELEMENT Apellido1 (#PCDATA)>
+        <!ELEMENT Apellido2 (#PCDATA)>
+        <!ELEMENT cuenta (#PCDATA)>
+        <!ELEMENT Antigüedad (#PCDATA)>
+        <!ELEMENT N._de_afiliación_a_la_Seguridad_Social (#PCDATA)>
+        <!ELEMENT Categoría-Grupo_profesional (#PCDATA)>
+        <!ELEMENT Grupo_Cotización (#PCDATA)>
+        <!ELEMENT email (#PCDATA)>

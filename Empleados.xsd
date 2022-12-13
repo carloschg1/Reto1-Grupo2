@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Empleados">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Empleado" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="NIF" type="xs:string"/>
+                            <xs:element name="Nombre" type="xs:string"/>
+                            <xs:element name="Apellido1" type="xs:string"/>
+                            <xs:element name="Apellido2" type="xs:string"/>
+                            <xs:element name="cuenta" type="xs:string"/>
+                            <xs:element name="Antigüedad" type="xs:string"/>
+                            <xs:element name="N._de_afiliación_a_la_Seguridad_Social" type="xs:string"/>
+                            <xs:element name="Categoría-Grupo_profesional" type="xs:string"/>
+                            <xs:element name="Grupo_Cotización" type="xs:integer"/>
+                            <xs:element name="email" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

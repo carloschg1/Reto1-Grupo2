@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<Departamentos xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+xs:noNamespaceSchemaLocation="Departamentos.xsd">
+    <Departamento>
+        <Id>1</Id>
+        <NombreDep>COMERCIAL</NombreDep>
+    </Departamento>
+    <Departamento>
+        <Id>2</Id>
+        <NombreDep>COMPTABILITAT</NombreDep>
+    </Departamento>
+    <Departamento>
+        <Id>3</Id>
+        <NombreDep>INFORMÀTICA</NombreDep>
+    </Departamento>
+    <Departamento>
+        <Id>4</Id>
+        <NombreDep>PERSONAL</NombreDep>
+    </Departamento>
+</Departamentos>
