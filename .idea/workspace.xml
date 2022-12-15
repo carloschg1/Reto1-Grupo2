@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="192c463a-2637-4da9-8def-54f56a81c228" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Cotizacion.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Horas.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Horas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Salario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Departamentos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Departamentos.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Departamentos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Departamentos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Empleados.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Empleados.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reto1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reto1.java" afterDir="false" />
-    </list>
+    <list default="true" id="192c463a-2637-4da9-8def-54f56a81c228" name="Changes" comment="" />
     <list id="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" name="Changes by carlo" comment="">
       <change beforePath="$PROJECT_DIR$/src/Reto1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reto1.java" afterDir="false" />
     </list>
@@ -40,44 +30,19 @@
     <file path="$PROJECT_DIR$/src/Reto1.java">
       <ranges>
         <range start1="1" end1="1" start2="1" end2="2" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
-        <range start1="6" end1="6" start2="7" end2="22" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="11" end1="11" start2="27" end2="35" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="20" end1="20" start2="44" end2="52" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="21" end1="22" start2="53" end2="54" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="28" end1="29" start2="60" end2="60" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="37" end1="38" start2="68" end2="69" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="44" end1="45" start2="75" end2="75" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="46" end1="47" start2="76" end2="77" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="51" end1="52" start2="81" end2="81" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
-        <range start1="57" end1="57" start2="86" end2="102" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="61" end1="62" start2="106" end2="117" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="74" end1="74" start2="129" end2="137" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="108" end1="108" start2="171" end2="223" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="147" end1="174" start2="262" end2="262" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="199" end1="230" start2="287" end2="287" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="232" end1="234" start2="289" end2="290" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
-        <range start1="236" end1="237" start2="292" end2="293" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="258" end1="259" start2="314" end2="315" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="262" end1="263" start2="318" end2="319" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="268" end1="268" start2="324" end2="383" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
-        <range start1="435" end1="437" start2="550" end2="550" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
-        <range start1="638" end1="639" start2="751" end2="752" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="640" end1="640" start2="753" end2="857" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="641" end1="685" start2="858" end2="858" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="687" end1="687" start2="860" end2="861" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="692" end1="694" start2="866" end2="868" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="695" end1="697" start2="869" end2="872" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="698" end1="701" start2="873" end2="874" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="703" end1="705" start2="876" end2="877" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="707" end1="709" start2="879" end2="880" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="711" end1="715" start2="882" end2="884" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
-        <range start1="716" end1="718" start2="885" end2="894" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="719" end1="720" start2="895" end2="896" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="721" end1="725" start2="897" end2="899" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="726" end1="730" start2="900" end2="905" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="731" end1="738" start2="906" end2="909" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="739" end1="744" start2="910" end2="912" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
-        <range start1="745" end1="746" start2="913" end2="913" changelist="192c463a-2637-4da9-8def-54f56a81c228" />
+        <range start1="80" end1="81" start2="81" end2="81" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
+        <range start1="171" end1="171" start2="171" end2="223" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="210" end1="237" start2="262" end2="262" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="264" end1="266" start2="289" end2="290" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
+        <range start1="300" end1="300" start2="324" end2="383" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
+        <range start1="467" end1="469" start2="550" end2="550" changelist="4484eb72-b7ea-4d59-a4e0-0d1bb9d6d12f" />
+        <range start1="672" end1="672" start2="753" end2="856" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="681" end1="683" start2="865" end2="867" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="684" end1="686" start2="868" end2="871" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="687" end1="690" start2="872" end2="873" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="692" end1="694" start2="875" end2="876" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="696" end1="698" start2="878" end2="879" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
+        <range start1="700" end1="704" start2="881" end2="883" changelist="58da3cc4-4b5e-4fcc-8a96-5ec83a89b212" />
       </ranges>
     </file>
   </component>
@@ -137,7 +102,7 @@
       <workItem from="1671101940369" duration="68000" />
       <workItem from="1671102104783" duration="71000" />
       <workItem from="1671113296318" duration="2189000" />
-      <workItem from="1671115831091" duration="12587000" />
+      <workItem from="1671115831091" duration="13082000" />
     </task>
     <task id="LOCAL-00001" summary="V2">
       <created>1671059589180</created>
@@ -160,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671063438245</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="V7">
+      <created>1671131654809</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671131654809</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +143,7 @@
     <MESSAGE value="V2" />
     <MESSAGE value="V3" />
     <MESSAGE value="V4" />
-    <option name="LAST_COMMIT_MESSAGE" value="V4" />
+    <MESSAGE value="V7" />
+    <option name="LAST_COMMIT_MESSAGE" value="V7" />
   </component>
 </project>
