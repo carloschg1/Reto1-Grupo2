@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -77,7 +78,6 @@ public class Reto1 {
             linea = flujoEntrada.readLine();
         }
     }
-
 
     public static void consultarEmpleado() throws IOException {
 
@@ -169,6 +169,58 @@ public class Reto1 {
         System.out.println();
     }
 
+    public static void consultarCantidadEmpleados() {
+
+        System.out.printf("%-15s%-15s\n",
+                "Departamento",
+                "Cantidad");
+
+        int contador = 0;
+
+        for (Departamentos departamentos1 : departamentos) {
+
+            for (Empleados empleados1 : empleados) {
+
+                int idEmpleado = empleados1.getIdDep();
+                int idDepartamento = departamentos1.getIdDep();
+
+                if (idEmpleado == idDepartamento) {
+                    contador++;
+
+                }
+
+
+            }
+
+            System.out.printf("%-15s%-15s\n",
+                    departamentos1.getIdDep(),
+                    contador);
+
+            contador = 0;
+        }
+    }
+
+    public static void consultarEmpleadosGrupoCotizacion() {
+
+        int contador = 0;
+        int i=-1;
+
+        for (Salario salario1 : salarios) {
+                i++;
+            for (Empleados empleados1 : empleados) {
+
+                int Gcotizacion = empleados1.getGCotizacion();
+                int NGCotizacion = salario1.getGCot();
+
+                if (Gcotizacion == NGCotizacion) {
+                    contador++;
+                }
+                cantECod[i] = contador;
+            }
+            contador = 0;
+        }
+    }
+
     public static void consultarEmpleadosCotizacion() throws IOException {
 
         System.out.println("Introduce grupo de cotización");
@@ -208,33 +260,6 @@ public class Reto1 {
         System.out.println();
     }
 
-
-    public static void Menu() {
-
-        System.out.println("Bienvenido al menu para la gestion de empleados");
-        System.out.println("Opciones: ");
-        System.out.println("1.Introducir el archivo csv a editar ");
-        System.out.println("2.Exportar archivo editado ");
-        System.out.println("3.Consultar datos empleado");
-        System.out.println("4.Consultar trabajadores por grupo cotizacion ");
-        System.out.println("5.Consultar trabajadores por departamento ");
-        System.out.println("6.Consultar coste salarial de la empresa");
-        System.out.println("7.Consultar coste salarial por categoria trabajador ");
-        System.out.println("8.Consultar cantidad de horas extras por departamento ");
-        System.out.println("9.Consultar coste salarial de un departamento");
-        System.out.println("10.Incorporar nuevo trabajador ");
-        System.out.println("11.Incorporar nueva categoria ");
-        System.out.println("12.Modificar datos personales ");
-        System.out.println("13.Modificar datos de la empresa de trabajadores exsitentes ");
-        System.out.println("14.Eliminar datos personales ");
-        System.out.println("15.Eliminar datos categoria ");
-        System.out.println("16.Salir");
-        System.out.println();
-        System.out.println("Introduce una opcion");
-        opcion = inputValue.nextInt();
-        System.out.println();
-    }
-
     public static void incorporarEmpleados() throws IOException {
         String antiguedad = "";
         System.out.println("Introduce el NIF del nuevo empleado: ");
@@ -262,8 +287,7 @@ public class Reto1 {
         empleados.add(empleados1);
     }
 
-
-    public static void guardar() throws IOException {
+    public static void guardarEmpleados() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
         miFichero = new File("./src/Empleados.csv");
@@ -296,6 +320,65 @@ public class Reto1 {
             flujoSalida.write("\n");
         }
         flujoSalida.close();
+    }
+
+    public static void guardarDepartamentos() throws IOException {
+        //Funcion para guardar los datos en el archivo csv
+
+        miFichero = new File("./src/Departamentos.csv");
+        if (!miFichero.exists()) {
+            System.out.println("El fichero no existe");
+        }
+        BufferedWriter flujoSalida = new BufferedWriter(new FileWriter(miFichero));
+        for (int i = 0; i < departamentos.size(); i++) {
+            flujoSalida.write(String.valueOf(departamentos.get(i).getIdDep()));
+            flujoSalida.write(";");
+            flujoSalida.write(departamentos.get(i).getNombreDep());
+            flujoSalida.write("\n");
+        }
+        flujoSalida.close();
+    }
+    public static void guardarCotizacion() throws IOException {
+        //Funcion para guardar los datos en el archivo csv
+
+        miFichero = new File("./src/Cotizacion.csv");
+        if (!miFichero.exists()) {
+            System.out.println("El fichero no existe");
+        }
+        BufferedWriter flujoSalida = new BufferedWriter(new FileWriter(miFichero));
+        for (int i = 0; i < salarios.size(); i++) {
+            flujoSalida.write(String.valueOf(salarios.get(i).getGCot()));
+            flujoSalida.write(";");
+            flujoSalida.write(String.valueOf(salarios.get(i).getDinero()));
+            flujoSalida.write("\n");
+        }
+        flujoSalida.close();
+    }
+
+    public static void guardarHoras() throws IOException {
+        //Funcion para guardar los datos en el archivo csv
+
+        miFichero = new File("./src/Horas.csv");
+        if (!miFichero.exists()) {
+            System.out.println("El fichero no existe");
+        }
+        BufferedWriter flujoSalida = new BufferedWriter(new FileWriter(miFichero));
+        for (int i = 0; i < horas.size(); i++) {
+            flujoSalida.write(horas.get(i).getNIF());
+            flujoSalida.write(";");
+            flujoSalida.write(horas.get(i).getFecha());
+            flujoSalida.write(";");
+            flujoSalida.write(String.valueOf(horas.get(i).getHoras()));
+            flujoSalida.write("\n");
+        }
+        flujoSalida.close();
+    }
+
+    public static void  guardarTodo() throws IOException{
+        guardarEmpleados();
+        guardarDepartamentos();
+        guardarCotizacion();
+        guardarHoras();
     }
 
     //Consular coste salarial de un departamento
@@ -464,8 +547,6 @@ public class Reto1 {
             }
         }
     }
-
-
 
      public  static  void eliminarDatosPersona() {
 
@@ -671,6 +752,109 @@ public class Reto1 {
         guardarEmpleados();
     }
 
+    public static void leerCotizacion() throws IOException {
+        miFichero = new File("./src/Cotizacion.csv");
+        if (!miFichero.exists()) {
+            System.out.println("El fichero no existe");
+        }
+        BufferedReader flujoEntrada = new BufferedReader(new FileReader(miFichero));
+        String linea = flujoEntrada.readLine();
+        while (linea != null) { // Va leyendo lineas y mientras no llegue al final nos va mostrando su contenido
+            String[] salarioArray = linea.split(";");
+            salarios.add(new Salario(Integer.parseInt(salarioArray[0]), Integer.parseInt(salarioArray[1])));
+            linea = flujoEntrada.readLine();
+        }
+    }
+
+    public static void consultarSalarioGrupoCotizacion() throws IOException {
+
+        int suma = 0;
+        int i = 0;
+        for (Salario salario1 : salarios) {
+            suma = salario1.getDinero() * cantECod[i];
+            i++;
+            System.out.println("El coste salarial del grupo " + i + " es = " + suma);
+        }
+    }
+
+
+
+
+    public static void consultarSalarioEmpresa() throws IOException {
+
+        int suma = 0;
+        int i = 0;
+        for (Salario salario1 : salarios) {
+            suma += salario1.getDinero() * cantECod[i];
+            i++;
+        }
+
+        System.out.println("El coste salarial de la empresa es = " + suma);
+    }
+
+
+
+    public static void consultarSalarioDepartamento() throws  IOException {
+
+        for (Salario salario1 : salarios) {
+            for (Empleados empleados1 : empleados) {
+                
+
+
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public static void leerHoras() throws IOException {
+        miFichero = new File("./src/Horas.csv");
+        if (!miFichero.exists()) {
+            System.out.println("El fichero no existe");
+        }
+        BufferedReader flujoEntrada = new BufferedReader(new FileReader(miFichero));
+        String linea = flujoEntrada.readLine();
+        while (linea != null) { // Va leyendo lineas y mientras no llegue al final nos va mostrando su contenido
+            String[] horasArray = linea.split(";");
+            horas.add(new Horas(horasArray[0], horasArray[1], Integer.parseInt(horasArray[2])));
+            linea = flujoEntrada.readLine();
+        }
+    }
+
+    public static void Menu() {
+
+        System.out.println("Bienvenido al menu para la gestion de empleados");
+        System.out.println("Opciones: ");
+        System.out.println("0.- Salir");
+        System.out.println("1.- Exportar archivo");
+        System.out.println("2.- Consultar datos empleado");
+        System.out.println("3.- Consultar trabajadores por grupo cotizacion ");
+        System.out.println("4.- Consultar trabajadores por departamento ");
+        System.out.println("5.- Consultar cantidad de empleados por departamento");
+        System.out.println("6.- Consultar coste salarial de la empresa");
+        System.out.println("7.- Consultar coste salarial por categoria profesional ");
+        System.out.println("8.- Consultar cantidad de horas extras por departamento ");
+        System.out.println("9.- Consultar coste salarial de un departamento");
+        System.out.println("10.- Incorporar nuevo trabajador ");
+        System.out.println("11.- Incorporar nueva categoria ");
+        System.out.println("12.- Modificar datos personales ");
+        System.out.println("13.- Eliminar departamentos ");
+        System.out.println("14.- Eliminar datos categoria ");
+        System.out.println();
+        System.out.println("Introduce una opcion");
+        opcion = inputValue.nextInt();
+        System.out.println();
+    }
+
     public static void main(String[] args)  throws IOException {
 
         leerArchivos();
@@ -679,29 +863,24 @@ public class Reto1 {
         do{
             Menu();
             switch (opcion){
-                case 1:
-                    leerEmpleados();
+                case CERRAR_PROGRAMA:
+                    programa=false;
                     break;
-                case 2:
-                    leerDepartamentos();
+                case EXPORTAR_CSV:
+                    guardarTodo();
+                    //Falta añadir submenu
                     break;
-
-                case 3:
-                    leerEmpleados();
+                case CONSULTAR_DATOS_EMPLEADO:
                     consultarEmpleado();
                     break;
-                case 4:
-                    leerEmpleados();
+                case CONSULTAR_EMPLEADOS_GCOTIZACION:
                     consultarEmpleadosCotizacion();
                     break;
-                case 5:
-                    leerEmpleados();
+                case CONSULTAR_EMPLEADOS_DEPARTAMENTO:
                     consultarEmpleadosDepartamentos();
                     break;
-                case 6:
-                    leerEmpleados();
-                    leerDepartamentos();
-                    consultarCosteSalDep();
+                case CONSULTAR_CANTIDADEMPLEADOS_DEPARTAMENTO: //Mostrar nombre del departamento
+                    consultarCantidadEmpleados();
                     break;
                 case CONSULTAR_SALARIO_EMPRESA:
                     consultarEmpleadosGrupoCotizacion();
