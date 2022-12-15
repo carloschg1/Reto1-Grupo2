@@ -104,6 +104,45 @@ public class Reto1 {
         System.out.println();
     }
 
+    public static void consultarEmpleadosCotizacion() throws IOException {
+
+        System.out.println("Introduce grupo de cotización");
+        identificador = inputValue.nextInt();
+        System.out.println();
+
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-10s%-28s%-15s%-15s\n",
+                "NIF",
+                "Nombre",
+                "Apellido1",
+                "Apellido2",
+                "Cuenta",
+                "Antigüedad",
+                "N. SS",
+                "Categoria G.Profesional",
+                "G.Cotización",
+                "Id Departamento");
+        System.out.println();
+        for (Empleados empleados1 : empleados) {
+
+            if (empleados1.getGCotizacion() == identificador) {
+
+                System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-19s%-24s%-17s%-15s\n",
+                        empleados1.getNIF(),
+                        empleados1.getNombre(),
+                        empleados1.getApellido1(),
+                        empleados1.getApellido2(),
+                        empleados1.getCuenta(),
+                        empleados1.getAntiguedad(),
+                        empleados1.getNASeguridadSocial(),
+                        empleados1.getCatGProfesional(),
+                        empleados1.getGCotizacion(),
+                        empleados1.getIdDep());
+
+            }
+        }
+        System.out.println();
+    }
+
     public static void Menu() {
 
         System.out.println("Bienvenido al menu para la gestion de empleados");
@@ -128,10 +167,65 @@ public class Reto1 {
         System.out.println("Introduce una opcion");
         opcion = inputValue.nextInt();
         System.out.println();
-
-
     }
 
+    public static void incorporarEmpleados() throws IOException {
+        String antiguedad = "";
+        System.out.println("Introduce el NIF del nuevo empleado: ");
+        String NIF = inputValue.next();
+        System.out.println("Introduce el Nombre del nuevo empleado: ");
+        String nombreEmpleado = inputValue.next();
+        System.out.println("Introduce el Apellido1 del nuevo empleado: ");
+        String apellido1Empleado = inputValue.next();
+        System.out.println("Introduce el Apellido2 del nuevo empleado: ");
+        String apellido2Empleado = inputValue.next();
+        System.out.println("Introduce la cuenta de usuario del nuevo empleado: ");
+        String cuentaEmpleado = inputValue.next();
+        System.out.println("Introduce el número de seguridad social del nuevo empleado: ");
+        String nSS = inputValue.next();
+        System.out.println("Introduce la categoría profesional del nuevo empleado: ");
+        String catProf = inputValue.next();
+        System.out.println("Introduce el grupo de cotización del nuevo empleado: ");
+        int GCot = inputValue.nextInt();
+        System.out.println("Introduce el email del nuevo empleado: ");
+        String email = inputValue.next();
+        System.out.println("Introduce el id del departamento del nuevo empleado: ");
+        int idDep = inputValue.nextInt();
+
+        Empleados empleados1 = new Empleados(NIF, nombreEmpleado, apellido1Empleado, apellido2Empleado, cuentaEmpleado, antiguedad , nSS, catProf, GCot, email, idDep);
+        empleados.add(empleados1);
+
+        miFichero = new File("./src/Empleados.csv");
+        if (!miFichero.exists()) {
+            System.out.println("El fichero no existe");
+        }
+        BufferedWriter flujoSalida = new BufferedWriter(new FileWriter(miFichero));
+        for (int i = 0; i < empleados.size(); i++){
+            flujoSalida.write(empleados.get(i).getNIF());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getNombre());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getApellido1());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getApellido2());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getCuenta());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getAntiguedad());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getNASeguridadSocial());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getCatGProfesional());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getGCotizacion()); //Fallan los integer
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getEmail());
+            flujoSalida.write(";");
+            flujoSalida.write(empleados.get(i).getIdDep()); //Fallan los integer
+            flujoSalida.write("\n");
+        }
+        flujoSalida.close();
+    }
 
     public static void main(String[] args)  throws IOException {
 
@@ -152,10 +246,13 @@ public class Reto1 {
                     consultarEmpleado();
                     break;
                 case 4:
-
+                    leerEmpleados();
+                    consultarEmpleadosCotizacion();
+                    break;
                 case 5:
                     leerEmpleados();
                     consultarEmpleadosDepartamentos();
+                    break;
                 case 6:
 
                 case 7:
@@ -165,7 +262,8 @@ public class Reto1 {
                 case 9:
 
                 case 10:
-
+                    leerEmpleados();
+                    incorporarEmpleados();
                 case 11:
 
                 case 12:
