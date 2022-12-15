@@ -168,15 +168,17 @@ public class Reto1 {
         System.out.println();
     }
 
+
+
     public static void Menu() {
 
         System.out.println("Bienvenido al menu para la gestion de empleados");
         System.out.println("Opciones: ");
-        System.out.println("1.Introducir el archivo csv a editar ");
-        System.out.println("2.Exportar archivo editado ");
-        System.out.println("3.Consultar datos empleado");
-        System.out.println("4.Consultar trabajadores por grupo cotizacion ");
-        System.out.println("5.Consultar trabajadores por departamento ");
+        System.out.println("1.Exportar archivo editado ");
+        System.out.println("2.Consultar datos empleado por ID");
+        System.out.println("3.Consultar trabajadores por grupo cotizacion ");
+        System.out.println("4.Consultar trabajadores por nombre departamento");
+        System.out.println("5.Consultar trabajadores por ID departamento ");
         System.out.println("6.Consultar coste salarial de la empresa");
         System.out.println("7.Consultar coste salarial por categoria trabajador ");
         System.out.println("8.Consultar cantidad de horas extras por departamento ");
@@ -252,6 +254,10 @@ public class Reto1 {
         flujoSalida.close();
     }
 
+
+
+
+
     public static void main(String[] args)  throws IOException {
 
         boolean programa=false;
@@ -260,19 +266,19 @@ public class Reto1 {
             Menu();
             switch (opcion){
                 case 1:
-                    leerEmpleados();
                     break;
                 case 2:
-                    leerDepartamentos();
+                    leerEmpleados();
+                    consultarEmpleado();
                     break;
 
                 case 3:
                     leerEmpleados();
-                    consultarEmpleado();
+                    consultarEmpleadosCotizacion();
                     break;
                 case 4:
+                    leerDepartamentos();
                     leerEmpleados();
-                    consultarEmpleadosCotizacion();
                     break;
                 case 5:
                     leerEmpleados();
