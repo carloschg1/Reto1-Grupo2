@@ -54,11 +54,36 @@ public class Reto1 {
         System.out.println("Introduce el ID del empleado");
         id = inputValue.next();
 
+        System.out.println();
+
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-10s%-28s%-15s%-15s\n",
+                "NIF",
+                "Nombre",
+                "Apellido1",
+                "Apellido2",
+                "Cuenta",
+                "Antigüedad",
+                "N. SS",
+                "Categoria G.Profesional",
+                "G.Cotización",
+                "Id Departamento");
+        System.out.println();
+
         for (Empleados empleados1 : empleados) {
 
             if (empleados1.getNIF().equals(id)) {
 
-                System.out.println(empleados1.getNombre() + empleados1.getApellido1());
+                System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-19s%-24s%-17s%-15s\n",
+                empleados1.getNIF(),
+                empleados1.getNombre(),
+                empleados1.getApellido1(),
+                empleados1.getApellido2(),
+                empleados1.getCuenta(),
+                empleados1.getAntiguedad(),
+                empleados1.getNASeguridadSocial(),
+                empleados1.getCatGProfesional(),
+                empleados1.getGCotizacion(),
+                empleados1.getIdDep());
 
             }
         }
