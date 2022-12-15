@@ -1,6 +1,6 @@
-net accounts /lockoutthreshold: 3
+net accounts /lockoutthreshold:3
 
-net accounts /lockoutduration: 120
+net accounts /lockoutduration:120
 
 net accounts /lockoutwindow:120
 
