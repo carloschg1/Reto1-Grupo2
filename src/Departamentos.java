@@ -1,13 +1,13 @@
 public class Departamentos {
-    public String idDep;
+    public int idDep;
     public String nombreDep;
 
-    public Departamentos(String idDep, String nombre) {
+    public Departamentos(int idDep, String nombreDep) {
         this.idDep = idDep;
         this.nombreDep = nombreDep;
     }
 
-    public String getIdDep() {
+    public int getIdDep() {
         return idDep;
     }
 

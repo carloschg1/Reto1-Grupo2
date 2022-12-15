@@ -4,11 +4,34 @@ import java.util.Scanner;
 
 
 public class Reto1 {
+    public static final int CERRAR_PROGRAMA = 0;
+    public static final int EXPORTAR_CSV = 1;
+    public static final int CONSULTAR_DATOS_EMPLEADO = 2;
+    public static final int CONSULTAR_EMPLEADOS_GCOTIZACION = 3;
+    public static final int CONSULTAR_EMPLEADOS_DEPARTAMENTO = 4;
+    public static final int CONSULTAR_CANTIDADEMPLEADOS_DEPARTAMENTO = 5;
+    public static final int CONSULTAR_SALARIO_EMPRESA = 6;
+    public static final int CONSULTAR_SALARIO_CATPRO = 7;
+    public static final int CONSULTAR_HORASEXTRAS_DEPARTAMENTO = 8;
+    public static final int CONSULTAR_SALARIO_DEPARTAMENTO = 9;
+    public static final int INCORPORAR_NUEVOTRABAJDOR = 10;
+    public static final int INCORPORAR_NUEVACATEGORIA = 11;
+    public static final int MODIFICAR_DATOSPERSONALES= 12;
+    public static final int ELIMINAR_DEPARTAMENTOS = 13;
+    public static final int ELIMINAR_DATOSCATEGORIA = 14;
 
     public static int identificador;
     public static String id;
     public static int opcion;
     public static ArrayList<Empleados> empleados = new ArrayList<>();
+
+
+    public static ArrayList<Horas> horas = new ArrayList<>();
+    public static ArrayList<Salario> salarios = new ArrayList<>();
+    public static int[] cantECod = new int[7];
+    public static int[] cantE = new int[29];
+    public static int[] cantG = new int[7];
+
     public static ArrayList<Departamentos> departamentos = new ArrayList<>();
 
     public static Scanner inputValue = new Scanner(System.in);
@@ -18,15 +41,22 @@ public class Reto1 {
     public static String respuesta = "";
 
 
+    public static void leerArchivos() throws IOException {
+
+        leerEmpleados();
+        leerDepartamentos();
+        leerCotizacion();
+        leerHoras();
+    }
+
     public static void leerEmpleados() throws IOException {
-        miFichero = new File("./Reto1-Grupo2-master/src/Empleados.csv");
+        miFichero = new File("./src/Empleados.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
         BufferedReader flujoEntrada = new BufferedReader(new FileReader(miFichero));
         String linea = flujoEntrada.readLine();
         while (linea != null) { // Va leyendo lineas y mientras no llegue al final nos va mostrando su contenido
-            System.out.println(linea);
             String[] empleadoArray = linea.split(";");
             empleados.add(new Empleados(empleadoArray[0], empleadoArray[1], empleadoArray[2], empleadoArray[3], empleadoArray[4], empleadoArray[5], empleadoArray[6], empleadoArray[7], Integer.parseInt(empleadoArray[8]), empleadoArray[9], Integer.parseInt(empleadoArray[10])));
             linea = flujoEntrada.readLine();
@@ -35,16 +65,15 @@ public class Reto1 {
 
     public static void leerDepartamentos() throws IOException {
 
-        miFichero = new File("./Reto1-Grupo2-master/src/Departamentos.csv");
+        miFichero = new File("./src/Departamentos.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
         BufferedReader flujoEntrada = new BufferedReader(new FileReader(miFichero));
         String linea = flujoEntrada.readLine();
         while (linea != null) { // Va leyendo lineas y mientras no llegue al final nos va mostrando su contenido
-            System.out.println(linea);
             String[] departamentoArray = linea.split(";");
-            departamentos.add(new Departamentos(departamentoArray[0], departamentoArray[1]));
+            departamentos.add(new Departamentos(Integer.parseInt(departamentoArray[0]), departamentoArray[1]));
             linea = flujoEntrada.readLine();
         }
     }
@@ -55,11 +84,37 @@ public class Reto1 {
         System.out.println("Introduce el NIF del empleado");
         id = inputValue.next();
 
+        System.out.println();
+
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-10s%-28s%-15s%-15s\n",
+                "NIF",
+                "Nombre",
+                "Apellido1",
+                "Apellido2",
+                "Cuenta",
+                "Antigüedad",
+                "N. SS",
+                "Categoria G.Profesional",
+                "G.Cotización",
+                "Id Departamento");
+        System.out.println();
+
+
         for (Empleados empleados1 : empleados) {
 
             if (empleados1.getNIF().equals(id)) {
 
-                System.out.println(empleados1.getNombre() + empleados1.getApellido1());
+                System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-19s%-24s%-17s%-15s\n",
+                        empleados1.getNIF(),
+                        empleados1.getNombre(),
+                        empleados1.getApellido1(),
+                        empleados1.getApellido2(),
+                        empleados1.getCuenta(),
+                        empleados1.getAntiguedad(),
+                        empleados1.getNASeguridadSocial(),
+                        empleados1.getCatGProfesional(),
+                        empleados1.getGCotizacion(),
+                        empleados1.getIdDep());
 
             }
         }
@@ -72,6 +127,14 @@ public class Reto1 {
         identificador = inputValue.nextInt();
         System.out.println();
 
+        System.out.println("Nombre departamento");
+
+        for (Departamentos departamentos1 : departamentos) {
+            if (departamentos1.getIdDep() == identificador) {
+                System.out.println(departamentos1.getNombreDep());
+            }
+        }
+        System.out.println();
         System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-10s%-28s%-15s%-15s\n",
                 "NIF",
                 "Nombre",
@@ -197,44 +260,13 @@ public class Reto1 {
 
         Empleados empleados1 = new Empleados(NIF, nombreEmpleado, apellido1Empleado, apellido2Empleado, cuentaEmpleado, antiguedad, nSS, catProf, GCot, email, idDep);
         empleados.add(empleados1);
-
-        miFichero = new File("./Reto1-Grupo2-master/src/Empleados.csv");
-        if (!miFichero.exists()) {
-            System.out.println("El fichero no existe");
-        }
-        BufferedWriter flujoSalida = new BufferedWriter(new FileWriter(miFichero));
-        for (int i = 0; i < empleados.size(); i++) {
-            flujoSalida.write(empleados.get(i).getNIF());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getNombre());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getApellido1());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getApellido2());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getCuenta());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getAntiguedad());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getNASeguridadSocial());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getCatGProfesional());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getGCotizacion()); //Fallan los integer
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getEmail());
-            flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getIdDep()); //Fallan los integer
-            flujoSalida.write("\n");
-        }
-        flujoSalida.close();
     }
 
 
     public static void guardar() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./Reto1-Grupo2-master/src/Empleados.csv");
+        miFichero = new File("./src/Empleados.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -256,11 +288,11 @@ public class Reto1 {
             flujoSalida.write(";");
             flujoSalida.write(empleados.get(i).getCatGProfesional());
             flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getGCotizacion());
+            flujoSalida.write(String.valueOf(empleados.get(i).getGCotizacion()));
             flujoSalida.write(";");
             flujoSalida.write(empleados.get(i).getEmail());
             flujoSalida.write(";");
-            flujoSalida.write(empleados.get(i).getIdDep());
+            flujoSalida.write(String.valueOf(empleados.get(i).getIdDep()));
             flujoSalida.write("\n");
         }
         flujoSalida.close();
@@ -636,55 +668,12 @@ public class Reto1 {
                 empleados.remove(i);
             }
         }
-        guardar();
+        guardarEmpleados();
     }
 
-    public  static  void modificarEmpleado() throws IOException {
-
-        System.out.println("Introduce el NIF del empleado a modificar: ");
-        String NIF = inputValue.next();
-        for (int i = 0; i < empleados.size(); i++) {
-            if (empleados.get(i).getNIF() == NIF) {
-                System.out.println("El nombre actual del empleado es : " + empleados.get(i).getNombre());
-                System.out.println("Introduce el nuevo nombre del empleado: ");
-                String nombreEmpleado = inputValue.next();
-                System.out.println("El primer apellido actual del empleado es : " + empleados.get(i).getApellido1());
-                System.out.println("Introduce el nuevo primer apellido del empleado: ");
-                String apellido1Empleado = inputValue.next();
-                System.out.println("El segundo apellido actual del empleado es : " + empleados.get(i).getApellido2());
-                System.out.println("Introduce el segundo apellido del empleado: ");
-                String apellido2Empleado = inputValue.next();
-                System.out.println("La cuenta actual del empleado es : " + empleados.get(i).getCuenta());
-                System.out.println("Introduce el número de cuenta del empleado: ");
-                String cuentaEmpleado = inputValue.next();
-                System.out.println("La antigüedad actual del empleado es : " + empleados.get(i).getAntiguedad());
-                System.out.println("Introduce la antigüedad del empleado: ");
-                String antiguedad = inputValue.next();
-                System.out.println("El número de la seguridad social actual del empleado es : " + empleados.get(i).getNASeguridadSocial());
-                System.out.println("Introduce el número de la seguridad social del empleado: ");
-                String nSS = inputValue.next();
-                System.out.println("La categoría profesional actual del empleado es : " + empleados.get(i).getCatGProfesional());
-                System.out.println("Introduce la categoría profesional del empleado: ");
-                String catProf = inputValue.next();
-                System.out.println("El coste salarial actual del empleado es : " + empleados.get(i).getGCotizacion());
-                System.out.println("Introduce el grupo de cotización del empleado: ");
-                int GCot = inputValue.nextInt();
-                System.out.println("El email actual del empleado es : " + empleados.get(i).getEmail());
-                System.out.println("Introduce el email del empleado: ");
-                String email = inputValue.next();
-                System.out.println("El id del departamento actual del empleado es : " + empleados.get(i).getIdDep());
-                System.out.println("Introduce el id del departamento del empleado: ");
-                int idDep = inputValue.nextInt();
-                empleados.remove(i);
-
-                Empleados empleado1 = new Empleados(NIF, nombreEmpleado, apellido1Empleado, apellido2Empleado, cuentaEmpleado, antiguedad, nSS, catProf, GCot, email, idDep);
-            }
-
-
-        }
-    }
     public static void main(String[] args)  throws IOException {
 
+        leerArchivos();
         boolean programa=false;
 
         do{
@@ -714,36 +703,36 @@ public class Reto1 {
                     leerDepartamentos();
                     consultarCosteSalDep();
                     break;
-
-                case 7:
-
-                case 8:
-
-                case 9:
-
-                case 10:
-                    leerEmpleados();
-                    incorporarEmpleados();
-                case 11:
-
-                case 12:
-                    leerEmpleados();
-                    modificarDatos();
-                    guardar();
-                case 13:
-                    leerEmpleados();
-                    eliminarDatosPersona();
-                    guardar();
-
-                case 14:
-
-                case 15:
-
-                case 16:
-                    System.out.println("Gracias por utilizar nuestro programa siuuuuu");
-                    programa=false;
+                case CONSULTAR_SALARIO_EMPRESA:
+                    consultarEmpleadosGrupoCotizacion();
+                    consultarSalarioEmpresa();
                     break;
+                case CONSULTAR_SALARIO_CATPRO: //Hacerlo bonito
+                    consultarEmpleadosGrupoCotizacion();
+                    consultarSalarioGrupoCotizacion();
+                    break;
+                case CONSULTAR_HORASEXTRAS_DEPARTAMENTO:
 
+                    break;
+                case CONSULTAR_SALARIO_DEPARTAMENTO:
+
+                    break;
+                case INCORPORAR_NUEVOTRABAJDOR:
+                    incorporarEmpleados();
+                    guardarEmpleados();
+                    break;
+                case INCORPORAR_NUEVACATEGORIA:
+                    break;
+                case MODIFICAR_DATOSPERSONALES:
+                    modificarDatos();
+                    guardarEmpleados();
+                    break;
+                case ELIMINAR_DEPARTAMENTOS:
+
+                    break;
+                case ELIMINAR_DATOSCATEGORIA:
+
+                    break;
             }
         }while(programa);
 
