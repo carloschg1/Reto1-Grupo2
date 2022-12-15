@@ -206,7 +206,7 @@ public class Reto1 {
         int i=-1;
 
         for (Salario salario1 : salarios) {
-                i++;
+            i++;
             for (Empleados empleados1 : empleados) {
 
                 int Gcotizacion = empleados1.getGCotizacion();
@@ -548,7 +548,7 @@ public class Reto1 {
         }
     }
 
-     public  static  void eliminarDatosPersona() {
+    public  static  void eliminarDatosPersona() {
 
         System.out.println("Introduce el NIF del empleado del cual quieres borrar datos: ");
         String NIF = inputValue.next();
@@ -572,170 +572,170 @@ public class Reto1 {
         for (Empleados empleados1 : empleados) {
             i++;
             if (empleados1.getNIF().equals(NIF)) {
-        switch (identificador) {
-            case 1:
-                System.out.println("El nif actual del empleado es : " + empleados.get(i).getNIF());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados("", empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado el NIF");
+                switch (identificador) {
+                    case 1:
+                        System.out.println("El nif actual del empleado es : " + empleados.get(i).getNIF());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados("", empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado el NIF");
+                        }
+                        break;
+
+                    case 2:
+                        System.out.println("El nombre actual del empleado es : " + empleados.get(i).getNombre());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), "", empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado el nombre");
+                        }
+                        break;
+
+                    case 3:
+                        System.out.println("El apellido1 actual del empleado es : " + empleados.get(i).getApellido1());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), "", empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado el apellido1");
+                        }
+                        break;
+
+                    case 4:
+                        System.out.println("El apellido2 actual del empleado es : " + empleados.get(i).getApellido2());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), "",empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado el apellido2");
+                        }
+                        break;
+
+                    case 5:
+                        System.out.println("La cuenta actual del empleado es : " + empleados.get(i).getCuenta());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(),"",
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado la cuenta");
+                        }
+                        break;
+
+                    case 6:
+                        System.out.println("La antigüedad actual del empleado es : " + empleados.get(i).getAntiguedad());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    "", empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado la antigüedad");
+                        }
+                        break;
+                    case 7:
+                        System.out.println("El n. SS actual del empleado es : " + empleados.get(i).getNASeguridadSocial());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), "", empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado el n. SS");
+                        }
+                        break;
+                    case 8:
+                        System.out.println("El grupo de cotización actual del empleado es : " + empleados.get(i).getGCotizacion());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), 0, empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);;
+                        } else {
+                            System.out.println("No se ha eliminado el grupo de cotización");
+                        }
+                        break;
+                    case 9:
+                        System.out.println("El email actual del empleado es : " + empleados.get(i).getEmail());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), "",
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+                        } else {
+                            System.out.println("No se ha eliminado el email");
+                        }
+                        break;
+                    case 10:
+                        System.out.println("El id del departamento actual del empleado es : " + empleados.get(i).getIdDep());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    0);
+                            empleados.set(i, empleados1);
+
+                        } else {
+                            System.out.println("No se ha eliminado el id del departamento");
+                        }
+                        break;
+                    case 11:
+                        System.out.println("La categoria profesional actual del empleado es : " + empleados.get(i).getCatGProfesional());
+                        System.out.println("¿ Seguro que quieres eliminarlo ? : ");
+
+                        respuesta = inputValue2.next();
+                        if (respuesta.equals("si")) {
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                    empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), "", empleados1.getGCotizacion(), empleados1.getEmail(),
+                                    empleados1.getIdDep());
+                            empleados.set(i, empleados1);
+
+                        } else {
+                            System.out.println("No se ha eliminado el id del departamento");
+                        }
+                        break;
                 }
-                break;
 
-            case 2:
-                System.out.println("El nombre actual del empleado es : " + empleados.get(i).getNombre());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados(empleados1.getNIF(), "", empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado el nombre");
-                }
-                break;
-
-            case 3:
-                System.out.println("El apellido1 actual del empleado es : " + empleados.get(i).getApellido1());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), "", empleados1.getApellido2(), empleados1.getCuenta(),
-                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado el apellido1");
-                }
-                break;
-
-            case 4:
-                System.out.println("El apellido2 actual del empleado es : " + empleados.get(i).getApellido2());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), "",empleados1.getCuenta(),
-                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado el apellido2");
-                }
-                break;
-
-            case 5:
-                System.out.println("La cuenta actual del empleado es : " + empleados.get(i).getCuenta());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(),"",
-                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado la cuenta");
-                }
-                break;
-
-            case 6:
-                System.out.println("La antigüedad actual del empleado es : " + empleados.get(i).getAntiguedad());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                            "", empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado la antigüedad");
-                }
-                break;
-            case 7:
-                System.out.println("El n. SS actual del empleado es : " + empleados.get(i).getNASeguridadSocial());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                            empleados1.getAntiguedad(), "", empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado el n. SS");
-                }
-                break;
-            case 8:
-                System.out.println("El grupo de cotización actual del empleado es : " + empleados.get(i).getGCotizacion());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                    empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), 0, empleados1.getEmail(),
-                            empleados1.getIdDep());
-                    empleados.set(i, empleados1);;
-                } else {
-                    System.out.println("No se ha eliminado el grupo de cotización");
-                }
-                break;
-            case 9:
-                System.out.println("El email actual del empleado es : " + empleados.get(i).getEmail());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                        empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                                empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), "",
-                                empleados1.getIdDep());
-                        empleados.set(i, empleados1);
-                } else {
-                    System.out.println("No se ha eliminado el email");
-                }
-                break;
-            case 10:
-                System.out.println("El id del departamento actual del empleado es : " + empleados.get(i).getIdDep());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                        empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                                empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
-                                0);
-                        empleados.set(i, empleados1);
-
-                } else {
-                    System.out.println("No se ha eliminado el id del departamento");
-                }
-                break;
-              case 11:
-                System.out.println("La categoria profesional actual del empleado es : " + empleados.get(i).getCatGProfesional());
-                System.out.println("¿ Seguro que quieres eliminarlo ? : ");
-
-                respuesta = inputValue2.next();
-                if (respuesta.equals("si")) {
-                        empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
-                                empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), "", empleados1.getGCotizacion(), empleados1.getEmail(),
-                                empleados1.getIdDep());
-                        empleados.set(i, empleados1);
-
-                } else {
-                    System.out.println("No se ha eliminado el id del departamento");
-                }
-                break;
-        }
-
-    }
+            }
 
         }
     }
@@ -795,25 +795,23 @@ public class Reto1 {
 
 
     public static void consultarSalarioDepartamento() throws  IOException {
-
-        for (Salario salario1 : salarios) {
-            for (Empleados empleados1 : empleados) {
-                
-
-
+        int suma = 0;
+        int salarioEmpleado = 0;
+        for (Empleados empleados1 : empleados) {
+            for (Salario salario : salarios) {
+                if (empleados1.getGCotizacion() == salario.getGCot()) {
+                    salarioEmpleado = salario.getDinero();
+                }
+                for (Departamentos departamentos1 : departamentos) {
+                    if (empleados1.getIdDep() == departamentos1.getIdDep()) {
+                        suma += salarioEmpleado;
+                        System.out.println("EL departamento " + departamentos1.getNombreDep() + "tiene un salario de: " + suma);
+                    }
+                }
+                suma = 0;
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public static void leerHoras() throws IOException {
@@ -894,7 +892,8 @@ public class Reto1 {
 
                     break;
                 case CONSULTAR_SALARIO_DEPARTAMENTO:
-
+                    consultarEmpleadosGrupoCotizacion();
+                    consultarSalarioDepartamento();
                     break;
                 case INCORPORAR_NUEVOTRABAJDOR:
                     incorporarEmpleados();
@@ -914,7 +913,6 @@ public class Reto1 {
                     break;
             }
         }while(programa);
-
 
 
     }
