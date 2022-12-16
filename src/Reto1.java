@@ -17,28 +17,25 @@ public class Reto1 {
     public static final int CONSULTAR_SALARIO_DEPARTAMENTO = 9;
     public static final int INCORPORAR_NUEVOTRABAJDOR = 10;
     public static final int INCORPORAR_NUEVACATEGORIA = 11;
-    public static final int MODIFICAR_DATOSPERSONALES= 12;
+    public static final int MODIFICAR_DATOSPERSONALES = 12;
     public static final int ELIMINAR_DEPARTAMENTOS = 13;
     public static final int ELIMINAR_DATOSCATEGORIA = 14;
-
     public static int identificador;
     public static String id;
     public static int opcion;
     public static ArrayList<Empleados> empleados = new ArrayList<>();
-
     public static ArrayList<Empleados> auxE = new ArrayList<>();
     public static ArrayList<Horas> horas = new ArrayList<>();
     public static ArrayList<Salario> salarios = new ArrayList<>();
+
+    public static ArrayList<Categorias> categorias = new ArrayList<>();
     public static int[] cantECod = new int[7];
     public static int[] cantE = new int[29];
     public static int[] cantG = new int[7];
-
     public static ArrayList<Departamentos> departamentos = new ArrayList<>();
-
     public static Scanner inputValue = new Scanner(System.in);
     public static Scanner inputValue2 = new Scanner(System.in);
     public static File miFichero;
-
     public static String respuesta = "";
 
 
@@ -51,7 +48,7 @@ public class Reto1 {
     }
 
     public static void leerEmpleados() throws IOException {
-        miFichero = new File("./src/Empleados.csv");
+        miFichero = new File("./Reto1-Grupo2-master/src/Empleados.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -66,7 +63,7 @@ public class Reto1 {
 
     public static void leerDepartamentos() throws IOException {
 
-        miFichero = new File("./src/Departamentos.csv");
+        miFichero = new File("./Reto1-Grupo2-master/src/Departamentos.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -193,7 +190,7 @@ public class Reto1 {
             }
 
             System.out.printf("%-15s%-15s\n",
-                    departamentos1.getIdDep(),
+                    departamentos1.getNombreDep(),
                     contador);
 
             contador = 0;
@@ -203,7 +200,7 @@ public class Reto1 {
     public static void consultarEmpleadosGrupoCotizacion() {
 
         int contador = 0;
-        int i=-1;
+        int i = -1;
 
         for (Salario salario1 : salarios) {
             i++;
@@ -290,7 +287,7 @@ public class Reto1 {
     public static void guardarEmpleados() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./src/Empleados.csv");
+        miFichero = new File("./Reto1-Grupo2-master/src/Empleados.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -325,7 +322,7 @@ public class Reto1 {
     public static void guardarDepartamentos() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./src/Departamentos.csv");
+        miFichero = new File("./Reto1-Grupo2-master/src/Departamentos.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -338,10 +335,11 @@ public class Reto1 {
         }
         flujoSalida.close();
     }
+
     public static void guardarCotizacion() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./src/Cotizacion.csv");
+        miFichero = new File("./Reto1-Grupo2-master/Cotizacion.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -358,7 +356,7 @@ public class Reto1 {
     public static void guardarHoras() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./src/Horas.csv");
+        miFichero = new File("./Reto1-Grupo2-master/src/Horas.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -374,11 +372,12 @@ public class Reto1 {
         flujoSalida.close();
     }
 
-    public static void  guardarTodo() throws IOException{
+    public static void guardarTodo() throws IOException {
         guardarEmpleados();
         guardarDepartamentos();
         guardarCotizacion();
         guardarHoras();
+        guardarCategorias();
     }
 
     //Consular coste salarial de un departamento
@@ -536,7 +535,7 @@ public class Reto1 {
         }
     }
 
-    public  static  void eliminarDatosPersona() {
+    public static void eliminarDatosPersona() {
 
         System.out.println("Introduce el NIF del empleado del cual quieres borrar datos: ");
         String NIF = inputValue.next();
@@ -555,7 +554,7 @@ public class Reto1 {
         System.out.println("11.- Categoría profesional");
         identificador = inputValue.nextInt();
 
-        int i =-1;
+        int i = -1;
 
         for (Empleados empleados1 : empleados) {
             i++;
@@ -611,7 +610,7 @@ public class Reto1 {
 
                         respuesta = inputValue2.next();
                         if (respuesta.equals("si")) {
-                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), "",empleados1.getCuenta(),
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), "", empleados1.getCuenta(),
                                     empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
                                     empleados1.getIdDep());
                             empleados.set(i, empleados1);
@@ -626,7 +625,7 @@ public class Reto1 {
 
                         respuesta = inputValue2.next();
                         if (respuesta.equals("si")) {
-                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(),"",
+                            empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), "",
                                     empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(),
                                     empleados1.getIdDep());
                             empleados.set(i, empleados1);
@@ -672,7 +671,8 @@ public class Reto1 {
                             empleados1 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
                                     empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), 0, empleados1.getEmail(),
                                     empleados1.getIdDep());
-                            empleados.set(i, empleados1);;
+                            empleados.set(i, empleados1);
+                            ;
                         } else {
                             System.out.println("No se ha eliminado el grupo de cotización");
                         }
@@ -741,7 +741,7 @@ public class Reto1 {
     }
 
     public static void leerCotizacion() throws IOException {
-        miFichero = new File("./src/Cotizacion.csv");
+        miFichero = new File("./Reto1-Grupo2-master/src/Cotizacion.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -774,9 +774,6 @@ public class Reto1 {
         }
     }
 
-
-
-
     public static void consultarSalarioEmpresa() throws IOException {
 
         int suma = 0;
@@ -788,7 +785,6 @@ public class Reto1 {
 
         System.out.println("El coste salarial de la empresa es = " + suma);
     }
-
 
     public static void consultarSalarioDepartamento() throws IOException {
         int suma = 0;
@@ -813,9 +809,8 @@ public class Reto1 {
         }
     }
 
-
     public static void leerHoras() throws IOException {
-        miFichero = new File("./src/Horas.csv");
+        miFichero = new File("./Reto1-Grupo2-master/src/Horas.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -854,6 +849,142 @@ public class Reto1 {
         System.out.println("EL departamento " + eleccion + " tiene " + horasE + " horas extras realizadas en total.");
     }
 
+    //La funcion nos permite incorporar nuevas categorias profesionales
+    public static void nuevaCategoriaProfesional() throws IOException {
+
+        miFichero = new File("./Reto1-Grupo2-master/src/CategoriasProfesionales.csv");
+        if (!miFichero.exists()) {
+            System.out.println("El fichero no existe");
+        }
+
+        BufferedReader flujoEntrada = new BufferedReader(new FileReader(miFichero));
+        String linea = flujoEntrada.readLine();
+
+        while (linea != null) { // Va leyendo lineas y mientras no llegue al final nos va mostrando su contenido
+            String[] catArray = linea.split(";");
+            categorias.add(new Categorias(catArray[0], catArray[1]));
+            linea = flujoEntrada.readLine();
+        }
+
+        System.out.println("Introduce el id de la nueva categoria: ");
+        String id = inputValue.next();
+        System.out.println("Introduce el nombre de la nueva categoria: ");
+        String nombre = inputValue.next();
+
+        categorias.add(new Categorias(id, nombre));
+        System.out.println("Categoria añadida correctamente");
+        System.out.println();
+        System.out.println("Las categorias actuales son las siguientes: ");
+        for (Categorias catProfesionales1 : categorias) {
+            System.out.println(catProfesionales1.getCategoria() + " " + catProfesionales1.getNombrecat() );
+        }
+        guardarCategorias();
+
+    }
+    public static  void guardarCategorias (){
+
+        try {
+            miFichero = new File("./Reto1-Grupo2-master/src/CategoriasProfesionales.csv");
+            if (!miFichero.exists()) {
+                System.out.println("El fichero no existe");
+            }
+            BufferedWriter flujoSalida = new BufferedWriter(new FileWriter(miFichero));
+            for (int i = 0; i < categorias.size(); i++) {
+                flujoSalida.write(String.valueOf(categorias.get(i).getCategoria()));
+                flujoSalida.write(";");
+                flujoSalida.write(categorias.get(i).getNombrecat());
+                flujoSalida.write("\n");
+            }
+            flujoSalida.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //La funcion nos permite borrar departamentos una vez que no tengan empleado
+    public static void borrarDepartamento() throws IOException{
+        boolean existe = false;
+        System.out.println("Introduce el departamento a borrar: ");
+        int eleccion = inputValue.nextInt();
+        for (Empleados empleados1 : empleados) {
+            if (empleados1.getIdDep() == eleccion) {
+                existe = true;
+            }
+        }
+        if (existe == false) {
+            for (Departamentos departamentos1 : departamentos) {
+                if (String.valueOf(departamentos1.getIdDep()) == String.valueOf(eleccion)) {
+                    departamentos.remove(departamentos1);
+                }
+            }
+            System.out.println("Departamento borrado correctamente");
+        } else {
+            System.out.println("No se puede borrar el departamento ya que tiene empleados");
+            System.out.println("Quieres ir a la herramienta de borrar empleados? (S/N)");
+            String respuesta = inputValue.next();
+            if (respuesta.equals("S")) {
+                eliminarEmpleado();
+            }
+        }
+
+        guardarDepartamentos();
+    }
+
+    public static void borrarDepartamentoIker() throws IOException{
+
+        boolean existe = false;
+        System.out.println("Introduce el departamento a borrar: ");
+        int eleccion = inputValue.nextInt();
+        for (Empleados empleados1 : empleados) {
+            if (empleados1.getIdDep() == eleccion) {
+                existe = true;
+            }
+        }
+        if (existe == false) {
+            for (Departamentos departamentos1 : departamentos) {
+                if (departamentos1.getIdDep() == eleccion) {
+                    departamentos.remove(departamentos1);
+                }
+            }
+            System.out.println("Departamento borrado correctamente");
+        } else {
+            System.out.println("No se puede borrar el departamento ya que tiene empleados");
+            System.out.println("Quieres ir a la herramienta de borrar empleados? (S/N)");
+            String respuesta = inputValue.next();
+            if (respuesta.equals("S")) {
+                eliminarEmpleado();
+            }
+        }
+
+        guardarDepartamentos();
+
+
+    }
+
+    //La funcion nos permite borrar categorias profesionales una vez que no tengan empleados asociados
+    /*public static void borrarCategoriaProfesional() throws IOException{
+        boolean existe = false;
+        System.out.println("Introduce la categoria a borrar: ");
+        int eleccion = inputValue.nextInt();
+        for (Empleados empleados1 : empleados) {
+            if (Integer.parseInt(empleados1.getCatGProfesional()) == eleccion) {
+                existe = true;
+            }
+        }
+        if (existe == false) {
+            for (Categorias categorias1 : categorias) {
+                if (categorias1.getCategoria() == String.valueOf(eleccion)) {
+                    categorias.remove(categorias1);
+                }
+            }
+            System.out.println("Categoria borrada correctamente");
+        } else {
+            System.out.println("No se puede borrar la categoria ya que tiene empleados asociados");
+        }
+
+        guardarCategorias();
+    }*/
+
     public static void Menu() {
 
         System.out.println("Bienvenido al menu para la gestion de empleados");
@@ -878,7 +1009,6 @@ public class Reto1 {
         opcion = inputValue.nextInt();
         System.out.println();
     }
-
     public static void main(String[] args)  throws IOException {
 
         leerArchivos();
@@ -903,7 +1033,7 @@ public class Reto1 {
                 case CONSULTAR_EMPLEADOS_DEPARTAMENTO:
                     consultarEmpleadosDepartamentos();
                     break;
-                case CONSULTAR_CANTIDADEMPLEADOS_DEPARTAMENTO: //Mostrar nombre del departamento
+                case CONSULTAR_CANTIDADEMPLEADOS_DEPARTAMENTO:
                     consultarCantidadEmpleados();
                     break;
                 case CONSULTAR_SALARIO_EMPRESA:
@@ -926,16 +1056,17 @@ public class Reto1 {
                     guardarEmpleados();
                     break;
                 case INCORPORAR_NUEVACATEGORIA:
+                    nuevaCategoriaProfesional();
                     break;
                 case MODIFICAR_DATOSPERSONALES:
                     modificarDatos();
                     guardarEmpleados();
                     break;
                 case ELIMINAR_DEPARTAMENTOS:
-
+                    borrarDepartamento();
                     break;
                 case ELIMINAR_DATOSCATEGORIA:
-
+                    //borrarCategoriaProfesional();
                     break;
             }
         }while(programa);
