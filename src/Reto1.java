@@ -12,7 +12,7 @@ public class Reto1 {
     public static final int CONSULTAR_EMPLEADOS_DEPARTAMENTO = 4;
     public static final int CONSULTAR_CANTIDADEMPLEADOS_DEPARTAMENTO = 5;
     public static final int CONSULTAR_SALARIO_EMPRESA = 6;
-    public static final int CONSULTAR_SALARIO_CATPRO = 7;
+    public static final int CONSULTAR_SALARIO_GCOT = 7;
     public static final int CONSULTAR_HORASEXTRAS_DEPARTAMENTO = 8;
     public static final int CONSULTAR_SALARIO_DEPARTAMENTO = 9;
     public static final int INCORPORAR_NUEVOTRABAJDOR = 10;
@@ -26,7 +26,7 @@ public class Reto1 {
     public static int opcion;
     public static ArrayList<Empleados> empleados = new ArrayList<>();
 
-
+    public static ArrayList<Empleados> auxE = new ArrayList<>();
     public static ArrayList<Horas> horas = new ArrayList<>();
     public static ArrayList<Salario> salarios = new ArrayList<>();
     public static int[] cantECod = new int[7];
@@ -389,18 +389,6 @@ public class Reto1 {
         for (int i = 0; i < empleados.size(); i++) {
             if (empleados.get(i).getIdDep() == idDep) {
                 System.out.println("El coste salarial del departamento " + idDep + " es de " + empleados.get(i).getGCotizacion());
-            }
-        }
-    }
-
-    //Consular coste salarial por categoría profesional
-    public static void consultarCosteSalCat() {
-
-        System.out.println("Introduce la categoría profesional: ");
-        String catProf = inputValue.next();
-        for (int i = 0; i < empleados.size(); i++) {
-            if (empleados.get(i).getCatGProfesional() == catProf) {
-                System.out.println("El coste salarial de la categoría " + catProf + " es de " + empleados.get(i).getGCotizacion());
             }
         }
     }
@@ -769,11 +757,20 @@ public class Reto1 {
     public static void consultarSalarioGrupoCotizacion() throws IOException {
 
         int suma = 0;
-        int i = 0;
-        for (Salario salario1 : salarios) {
-            suma = salario1.getDinero() * cantECod[i];
-            i++;
-            System.out.println("El coste salarial del grupo " + i + " es = " + suma);
+        int salarioEmpleado = 0;
+        for (Salario salario : salarios) {
+            for (Empleados empleados1 : empleados) {
+                if (empleados1.getGCotizacion() == salario.getGCot()) {
+                    Empleados empleados2 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(), empleados1.getIdDep());
+                    auxE.add(empleados2);
+                    salarioEmpleado = salario.getDinero();
+                    suma += salarioEmpleado;
+                }
+            }
+            System.out.println("EL grupo de cotización " + salario.getGCot() + " tiene un salario de: " + suma);
+            auxE.clear();
+            suma = 0;
         }
     }
 
@@ -793,23 +790,26 @@ public class Reto1 {
     }
 
 
-
-    public static void consultarSalarioDepartamento() throws  IOException {
+    public static void consultarSalarioDepartamento() throws IOException {
         int suma = 0;
         int salarioEmpleado = 0;
-        for (Empleados empleados1 : empleados) {
-            for (Salario salario : salarios) {
-                if (empleados1.getGCotizacion() == salario.getGCot()) {
-                    salarioEmpleado = salario.getDinero();
-                }
-                for (Departamentos departamentos1 : departamentos) {
+        for (Departamentos departamentos1 : departamentos) {
+            for (Empleados empleados1 : empleados) {
+                for (Salario salario : salarios) {
                     if (empleados1.getIdDep() == departamentos1.getIdDep()) {
-                        suma += salarioEmpleado;
-                        System.out.println("EL departamento " + departamentos1.getNombreDep() + "tiene un salario de: " + suma);
+                        Empleados empleados2 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                                empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(), empleados1.getIdDep());
+                        auxE.add(empleados2);
+                        if (empleados1.getGCotizacion() == salario.getGCot()) {
+                            salarioEmpleado = salario.getDinero();
+                            suma += salarioEmpleado;
+                        }
                     }
                 }
-                suma = 0;
             }
+            System.out.println("EL departamento " + departamentos1.getNombreDep() + " tiene un salario de: " + suma);
+            auxE.clear();
+            suma = 0;
         }
     }
 
@@ -826,6 +826,32 @@ public class Reto1 {
             horas.add(new Horas(horasArray[0], horasArray[1], Integer.parseInt(horasArray[2])));
             linea = flujoEntrada.readLine();
         }
+    }
+
+    public static void consultarHorasExtrasDepartamento() {
+        int horasE = 0;
+        System.out.println("1.- Comercial");
+        System.out.println("2.- Contabilidad");
+        System.out.println("3.- Informatica");
+        System.out.println("4.- Personal");
+        System.out.println();
+        System.out.println("Introduce el departamento a consultar las horas extras: ");
+        int eleccion = inputValue.nextInt();
+
+        for (Empleados empleados1 : empleados) {
+            for (Horas horas1 : horas) {
+                if (empleados1.getIdDep() == eleccion) {
+                    Empleados empleados2 = new Empleados(empleados1.getNIF(), empleados1.getNombre(), empleados1.getApellido1(), empleados1.getApellido2(), empleados1.getCuenta(),
+                            empleados1.getAntiguedad(), empleados1.getNASeguridadSocial(), empleados1.getCatGProfesional(), empleados1.getGCotizacion(), empleados1.getEmail(), empleados1.getIdDep());
+                    auxE.add(empleados2);
+                    if (empleados1.getNIF().equals(horas1.getNIF())) {
+                        horasE += horas1.getHoras();
+                    }
+                }
+            }
+        }
+        System.out.println();
+        System.out.println("EL departamento " + eleccion + " tiene " + horasE + " horas extras realizadas en total.");
     }
 
     public static void Menu() {
@@ -884,12 +910,12 @@ public class Reto1 {
                     consultarEmpleadosGrupoCotizacion();
                     consultarSalarioEmpresa();
                     break;
-                case CONSULTAR_SALARIO_CATPRO: //Hacerlo bonito
+                case CONSULTAR_SALARIO_GCOT: //Hacerlo bonito
                     consultarEmpleadosGrupoCotizacion();
                     consultarSalarioGrupoCotizacion();
                     break;
                 case CONSULTAR_HORASEXTRAS_DEPARTAMENTO:
-
+                    consultarHorasExtrasDepartamento();
                     break;
                 case CONSULTAR_SALARIO_DEPARTAMENTO:
                     consultarEmpleadosGrupoCotizacion();
