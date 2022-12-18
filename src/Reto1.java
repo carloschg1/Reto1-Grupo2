@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class Reto1 {
 
@@ -130,12 +131,12 @@ public class Reto1 {
     /**
      * @throws IOException
      * @author: Iker Rodrigez Montava
-     * La Funcion consulta los datos de un empleado a partir del NIF
+     * La Funcion consulta los datos de un empleado a partir del NIFR
      */
 
-    public static void consultarEmpleado() throws IOException {
+    public static void consultarEmpleado() {
 
-        System.out.println("Introduce el NIF del empleado");
+        System.out.print("Introduce el NIF del empleado: ");
         id = inputValue.next();
 
         System.out.println();
@@ -151,7 +152,8 @@ public class Reto1 {
                 "Categoria G.Profesional",
                 "G.Cotización",
                 "Id Departamento");
-        System.out.println();
+        System.out.println("------------------------------------------------------------------------------------------" +
+                "-----------------------------------------------------------------------------------------------------");
 
 
         for (Empleados empleados1 : empleados) {
@@ -184,7 +186,7 @@ public class Reto1 {
 
     public static void consultarEmpleadosDepartamentos() throws IOException {
 
-        System.out.println("Introduce el ID del departamento");
+        System.out.print("Introduce el ID del departamento: ");
         identificador = inputValue.nextInt();
         System.out.println();
 
@@ -207,7 +209,8 @@ public class Reto1 {
                 "Categoria G.Profesional",
                 "G.Cotización",
                 "Id Departamento");
-        System.out.println();
+        System.out.println("------------------------------------------------------------------------------------------" +
+                "-----------------------------------------------------------------------------------------------------");
 
         for (Empleados empleados1 : empleados) {
 
@@ -301,9 +304,14 @@ public class Reto1 {
 
     public static void consultarEmpleadosCotizacion() throws IOException {
 
-        System.out.println("Introduce grupo de cotización");
-        identificador = inputValue.nextInt();
-        System.out.println();
+        try {
+            System.out.print("Introduce grupo de cotización: ");
+            identificador = Integer.parseInt(inputValue.next());
+            System.out.println();
+
+        } catch (NumberFormatException e) {
+            System.out.println("El grupo de cotización introducido no es válido, por favor introdúcela de nuevo");
+        }
 
         System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-10s%-28s%-15s%-15s\n",
                 "NIF",
@@ -316,7 +324,8 @@ public class Reto1 {
                 "Categoria G.Profesional",
                 "G.Cotización",
                 "Id Departamento");
-        System.out.println();
+        System.out.println("------------------------------------------------------------------------------------------" +
+                "-----------------------------------------------------------------------------------------------------");
         for (Empleados empleados1 : empleados) {
 
             if (empleados1.getGCotizacion() == identificador) {
@@ -347,25 +356,25 @@ public class Reto1 {
 
     public static void incorporarEmpleados() throws IOException {
         String antiguedad = "";
-        System.out.println("Introduce el NIF del nuevo empleado: ");
+        System.out.print("Introduce el NIF del nuevo empleado: ");
         String NIF = inputValue.next();
-        System.out.println("Introduce el Nombre del nuevo empleado: ");
+        System.out.print("Introduce el Nombre del nuevo empleado: ");
         String nombreEmpleado = inputValue.next();
-        System.out.println("Introduce el Apellido1 del nuevo empleado: ");
+        System.out.print("Introduce el Apellido1 del nuevo empleado: ");
         String apellido1Empleado = inputValue.next();
-        System.out.println("Introduce el Apellido2 del nuevo empleado: ");
+        System.out.print("Introduce el Apellido2 del nuevo empleado: ");
         String apellido2Empleado = inputValue.next();
-        System.out.println("Introduce la cuenta de usuario del nuevo empleado: ");
+        System.out.print("Introduce la cuenta de usuario del nuevo empleado: ");
         String cuentaEmpleado = inputValue.next();
-        System.out.println("Introduce el número de seguridad social del nuevo empleado: ");
+        System.out.print("Introduce el número de seguridad social del nuevo empleado: ");
         String nSS = inputValue.next();
-        System.out.println("Introduce la categoría profesional del nuevo empleado: ");
+        System.out.print("Introduce la categoría profesional del nuevo empleado: ");
         String catProf = inputValue.next();
-        System.out.println("Introduce el grupo de cotización del nuevo empleado: ");
+        System.out.print("Introduce el grupo de cotización del nuevo empleado: ");
         int GCot = inputValue.nextInt();
-        System.out.println("Introduce el email del nuevo empleado: ");
+        System.out.print("Introduce el email del nuevo empleado: ");
         String email = inputValue.next();
-        System.out.println("Introduce el id del departamento del nuevo empleado: ");
+        System.out.print("Introduce el id del departamento del nuevo empleado: ");
         int idDep = inputValue.nextInt();
 
         Empleados empleados1 = new Empleados(NIF, nombreEmpleado, apellido1Empleado, apellido2Empleado, cuentaEmpleado, antiguedad, nSS, catProf, GCot, email, idDep);
@@ -512,7 +521,7 @@ public class Reto1 {
      */
     public static void consultarCosteSalDep() {
 
-        System.out.println("Introduce el id del departamento: ");
+        System.out.print("Introduce el id del departamento: ");
         int idDep = inputValue.nextInt();
         for (int i = 0; i < empleados.size(); i++) {
             if (empleados.get(i).getIdDep() == idDep) {
@@ -528,10 +537,11 @@ public class Reto1 {
      */
 
     public static void modificarDatos() {
-        System.out.println("Introduce el NIF del empleado a modificar");
+        System.out.print("Introduce el NIF del empleado a modificar: ");
         id = inputValue.next();
 
-        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-10s%-28s%-15s%-25s%-15s\n",
+        System.out.println();
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-10s%-28s%-25s%-20s%-15s\n",
                 "NIF",
                 "Nombre",
                 "Apellido1",
@@ -543,13 +553,14 @@ public class Reto1 {
                 "G.Cotización",
                 "Email",
                 "Id Departamento");
-        System.out.println();
+        System.out.println("------------------------------------------------------------------------------------------" +
+                "-----------------------------------------------------------------------------------------------------");
         int i = -1;
         for (Empleados empleados1 : empleados) {
             i++;
             if (empleados1.getNIF().equals(id)) {
 
-                System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-19s%-24s%-17s%-25s%-15s\n",
+                System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-19s%-24s%-12s%-35s%-15s\n",
                         empleados1.getNIF(),
                         empleados1.getNombre(),
                         empleados1.getApellido1(),
@@ -562,6 +573,8 @@ public class Reto1 {
                         empleados1.getEmail(),
                         empleados1.getIdDep());
 
+                System.out.println();
+                System.out.println();
                 System.out.println("Que datos deseas modificar?");
                 System.out.println("1.- NIF");
                 System.out.println("2.- Nombre");
@@ -678,7 +691,7 @@ public class Reto1 {
 
     public static void eliminarEmpleado() throws IOException {
 
-        System.out.println("Introduce el NIF del empleado a eliminar: ");
+        System.out.print("Introduce el NIF del empleado a eliminar: ");
         String NIF = inputValue.next();
         for (int i = 0; i < empleados.size(); i++) {
             if (empleados.get(i).getNIF() == NIF) {
@@ -756,7 +769,7 @@ public class Reto1 {
             i++;
         }
 
-        System.out.println("El coste salarial de la empresa es = " + suma);
+        System.out.println("El coste salarial de la empresa es: " + suma + "€");
     }
 
 
@@ -784,7 +797,7 @@ public class Reto1 {
                     }
                 }
             }
-            System.out.println("EL departamento " + departamentos1.getNombreDep() + " tiene un salario de: " + suma);
+            System.out.println("EL departamento " + departamentos1.getNombreDep() + " tiene un salario de: " + suma + "€");
             auxE.clear();
             suma = 0;
         }
@@ -850,7 +863,7 @@ public class Reto1 {
      */
     public static void nuevaCategoriaProfesional() throws IOException {
 
-        System.out.println("Introduce el id de la nueva categoria: ");
+        System.out.print("Introduce el id de la nueva categoria: ");
         String id = inputValue.next();
 
         Categorias categorias1 = new Categorias(id);
@@ -954,12 +967,12 @@ public class Reto1 {
         }
     }
 
-        /**
-         * @author: Denis Andres Ion Badea
-         * @collaborator: Carlos Hernandez Garcia
-         * La funcion nos permite borrar una categoria profesional una vez que no tenga empleados
-         * @throws IOException
-         */
+    /**
+     * @author: Denis Andres Ion Badea
+     * @collaborator: Carlos Hernandez Garcia
+     * La funcion nos permite borrar una categoria profesional una vez que no tenga empleados
+     * @throws IOException
+     */
 
     public static void borrarCategoriaProfesional() throws IOException{
         Categorias categorias2 = null;
@@ -1019,191 +1032,193 @@ public class Reto1 {
         }
     }
 
-        /**
-         * @author: Iker Rodriguez Montava
-         * Interfaz para que el usuario pueda elegir que desea hacer
-         */
+    /**
+     * @author: Iker Rodriguez Montava
+     * Interfaz para que el usuario pueda elegir que desea hacer
+     */
 
-        public static void Menu () {
-
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("Bienvenido al menu principal, elija una de las siguientes opciones:");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("0.- Salir");
-            System.out.println("1.- Guardar archivos ");
-            System.out.println("2.- Consultar datos ");
-            System.out.println("3.- Incorporar datos ");
-            System.out.println("4.- Modificar datos personales ");
-            System.out.println("5.- Eliminar datos ");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.print("Introduce una opcion: ");
-            opcion = inputValue.nextInt();
-            System.out.println();
-        }
-
-
-        /**
-         * @author: Iker Rodriguez Montava
-         * @collaborator: Carlos Hernandez Garcia
-         * Submenu para la consulta de datos
-         */
-
-        public static void consultar () {
-
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("Bienvenido al menu para la consulta de datos");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("Opciones: ");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("1.- Consultar datos empleado");
-            System.out.println("2.- Consultar trabajadores por grupo cotizacion ");
-            System.out.println("3.- Consultar trabajadores por departamento ");
-            System.out.println("4.- Consultar cantidad de empleados por departamento");
-            System.out.println("5.- Consultar coste salarial de la empresa");
-            System.out.println("6.- Consultar coste salarial por categoria profesional ");
-            System.out.println("7.- Consultar cantidad de horas extras por departamento ");
-            System.out.println("8.- Consultar coste salarial de un departamento");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.print("Introduce una opcion: ");
-            opcion = inputValue.nextInt();
-        }
-
-        /**
-         * @author: Iker Rodriguez Montava
-         * @collaborator: Carlos Hernandez Garcia
-         * Submenu para la incorporacion de datos
-         */
-
-        public static void incorporar () {
-
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("Bienvenido al menu para la incorporación de datos");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("Opciones: ");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("1.- Incorporar nuevo trabajador ");
-            System.out.println("2.- Incorporar nueva categoria ");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.print("Introduce una opcion: ");
-            opcion = inputValue.nextInt();
-
-        }
-        /**
-         * @author: Iker Rodriguez Montava
-         * @collaborator: Carlos Hernandez Garcia
-         * Submenu para la eliminacion de datos
-         */
-
-        public static void eliminar () {
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("Bienvenido al menu para la eliminacion de datos");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("Opciones: ");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.println("1.- Eliminar departamentos ");
-            System.out.println("2.- Eliminar datos categoria ");
-            System.out.println("-----------------------------------------------------------------------------");
-            System.out.print("Introduce una opcion: ");
-            opcion = inputValue.nextInt();
-        }
-
-        /**
-         * @author: Iker Rodriguez Montava
-         * Lugar donde se reunen todas las funciones para que el usuario pueda elegir que desea hacer.
-         */
+    public static void Menu () {
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Bienvenido al menu principal, elija una de las siguientes opciones:");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("0.- Salir");
+        System.out.println("1.- Guardar archivos ");
+        System.out.println("2.- Consultar datos ");
+        System.out.println("3.- Incorporar datos ");
+        System.out.println("4.- Modificar datos personales ");
+        System.out.println("5.- Eliminar datos ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.print("Introduce una opcion: ");
+        opcion = inputValue.nextInt();
+        System.out.println();
+    }
 
 
-        public static void main (String[]args)  throws IOException {
+    /**
+     * @author: Iker Rodriguez Montava
+     * @collaborator: Carlos Hernandez Garcia
+     * Submenu para la consulta de datos
+     */
 
-            leerArchivos();
-            boolean programa = true;
+    public static void consultar () {
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Bienvenido al menu para la consulta de datos");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Opciones: ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("1.- Consultar datos empleado");
+        System.out.println("2.- Consultar trabajadores por grupo cotizacion ");
+        System.out.println("3.- Consultar trabajadores por departamento ");
+        System.out.println("4.- Consultar cantidad de empleados por departamento");
+        System.out.println("5.- Consultar coste salarial de la empresa");
+        System.out.println("6.- Consultar coste salarial por categoria profesional ");
+        System.out.println("7.- Consultar cantidad de horas extras por departamento ");
+        System.out.println("8.- Consultar coste salarial de un departamento");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.print("Introduce una opcion: ");
+        opcion = inputValue.nextInt();
+    }
 
-            do {
-                Menu();
-                switch (opcion) {
+    /**
+     * @author: Iker Rodriguez Montava
+     * @collaborator: Carlos Hernandez Garcia
+     * Submenu para la incorporacion de datos
+     */
 
-                    case CERRAR_PROGRAMA:
-                        programa = false;
-                        System.out.println("Gracias por usar nuestro sistema.");
+    public static void incorporar () {
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Bienvenido al menu para la incorporación de datos");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Opciones: ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("1.- Incorporar nuevo trabajador ");
+        System.out.println("2.- Incorporar nueva categoria ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.print("Introduce una opcion: ");
+        opcion = inputValue.nextInt();
 
-                        break;
-                    case EXPORTAR_CSV:
-                        guardarTodo();
-                        System.out.println("Todos los archivos se han guardado correctamente");
-                    case CONSULTAR: //Error opcion no valida
-                        consultar();
-                        switch (opcion) {
-                            case CONSULTAR_DATOS_EMPLEADO:
-                                consultarEmpleado();
-                                System.out.println();
-                                break;
-                            case CONSULTAR_EMPLEADOS_GCOTIZACION:
-                                consultarEmpleadosCotizacion(); //Error no existe grupo cotización
-                                System.out.println();
-                                break;
-                            case CONSULTAR_EMPLEADOS_DEPARTAMENTO:
-                                consultarEmpleadosDepartamentos(); //Error no existe departamento
-                                System.out.println();
-                                break;
-                            case CONSULTAR_CANTIDADEMPLEADOS_DEPARTAMENTO:
-                                consultarCantidadEmpleados();
-                                System.out.println();
-                                break;
-                            case CONSULTAR_SALARIO_EMPRESA:
-                                consultarEmpleadosGrupoCotizacion();
-                                consultarSalarioEmpresa();
-                                System.out.println();
-                                break;
-                            case CONSULTAR_SALARIO_GCOT: //Error de "profgesional"
-                                consultarEmpleadosGrupoCotizacion();
-                                consultarSalarioCatProfesional();
-                                System.out.println(); //Error de no existe GCOT
-                                break;
-                            case CONSULTAR_HORASEXTRAS_DEPARTAMENTO: //Error departamento no existe
-                                consultarHorasExtrasDepartamento();
-                                System.out.println();
-                                break;
-                            case CONSULTAR_SALARIO_DEPARTAMENTO:
-                                consultarEmpleadosGrupoCotizacion();
-                                consultarSalarioDepartamento();
-                                System.out.println();
-                                break;
-                        }
-                        break;
+    }
+    /**
+     * @author: Iker Rodriguez Montava
+     * @collaborator: Carlos Hernandez Garcia
+     * Submenu para la eliminacion de datos
+     */
 
-                    case INCORPORAR://Error opcion no valida
-                        incorporar();
-                        switch (opcion) {
-                            case INCORPORAR_NUEVOTRABAJDOR:
-                                incorporarEmpleados();//Error de integer
-                                guardarEmpleados();
-                                break;
-                            case INCORPORAR_NUEVACATEGORIA:
-                                nuevaCategoriaProfesional();
-                                break;
-                        }
-                        break;
-                    case MODIFICAR_DATOSPERSONALES://Error de integer
-                        modificarDatos();//Error de NIF erroneo
-                        guardarEmpleados();//Poner que se ha cambiado correctamente
-                        break;
+    public static void eliminar () {
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Bienvenido al menu para la eliminacion de datos");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Opciones: ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("1.- Eliminar departamentos ");
+        System.out.println("2.- Eliminar datos categoria ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.print("Introduce una opcion: ");
+        opcion = inputValue.nextInt();
+    }
 
-                    case ELIMINAR:
-                        eliminar();
-                        switch (opcion) {
-                            case ELIMINAR_DEPARTAMENTOS://Error de elegir entre si o no y ponemos algo que no toca
-                                borrarDepartamento();//Error introduce departamento a borrar y ponemos letras
-                                break;
-                            case ELIMINAR_DATOSCATEGORIA://Error de diferencias mayus minus
-                                borrarCategoriaProfesional();
-                                break;
-                        }
-                        break;
-                    default://Hacer try catch por strings
-                        System.out.println("Opción incorrecta, introdúcela de nuevo.");
-                        System.out.println();
-                }
-            } while (programa);
+    /**
+     * @author: Iker Rodriguez Montava
+     * Lugar donde se reunen todas las funciones para que el usuario pueda elegir que desea hacer.
+     */
 
-        }
+
+    public static void main (String[]args)  throws IOException {
+
+        leerArchivos();
+        boolean programa = true;
+
+        do {
+            Menu();
+            switch (opcion) {
+
+                case CERRAR_PROGRAMA:
+                    programa = false;
+                    System.out.println("Gracias por usar nuestro sistema.");
+
+                    break;
+                case EXPORTAR_CSV:
+                    guardarTodo();
+                    System.out.println("Todos los archivos se han guardado correctamente");
+                    break;
+                case CONSULTAR: //Error opcion no valida
+                    consultar();
+                    switch (opcion) {
+                        case CONSULTAR_DATOS_EMPLEADO:
+                            consultarEmpleado();
+                            System.out.println();
+                            break;
+                        case CONSULTAR_EMPLEADOS_GCOTIZACION:
+                            consultarEmpleadosCotizacion(); //Error no existe grupo cotización
+                            System.out.println();
+                            break;
+                        case CONSULTAR_EMPLEADOS_DEPARTAMENTO:
+                            consultarEmpleadosDepartamentos(); //Error no existe departamento
+                            System.out.println();
+                            break;
+                        case CONSULTAR_CANTIDADEMPLEADOS_DEPARTAMENTO:
+                            consultarCantidadEmpleados();
+                            System.out.println();
+                            break;
+                        case CONSULTAR_SALARIO_EMPRESA:
+                            consultarEmpleadosGrupoCotizacion();
+                            consultarSalarioEmpresa();
+                            System.out.println();
+                            break;
+                        case CONSULTAR_SALARIO_GCOT: //Error de "profgesional"
+                            consultarEmpleadosGrupoCotizacion();
+                            consultarSalarioCatProfesional();
+                            System.out.println(); //Error de no existe GCOT
+                            break;
+                        case CONSULTAR_HORASEXTRAS_DEPARTAMENTO: //Error departamento no existe
+                            consultarHorasExtrasDepartamento();
+                            System.out.println();
+                            break;
+                        case CONSULTAR_SALARIO_DEPARTAMENTO:
+                            consultarEmpleadosGrupoCotizacion();
+                            consultarSalarioDepartamento();
+                            System.out.println();
+                            break;
+                    }
+                    break;
+
+                case INCORPORAR://Error opcion no valida
+                    incorporar();
+                    switch (opcion) {
+                        case INCORPORAR_NUEVOTRABAJDOR:
+                            incorporarEmpleados();//Error de integer
+                            guardarEmpleados();
+                            break;
+                        case INCORPORAR_NUEVACATEGORIA:
+                            nuevaCategoriaProfesional();
+                            break;
+                    }
+                    break;
+                case MODIFICAR_DATOSPERSONALES://Error de integer
+                    modificarDatos();//Error de NIF erroneo
+                    guardarEmpleados();//Poner que se ha cambiado correctamente
+                    break;
+
+                case ELIMINAR:
+                    eliminar();
+                    switch (opcion) {
+                        case ELIMINAR_DEPARTAMENTOS://Error de elegir entre si o no y ponemos algo que no toca
+                            borrarDepartamento();//Error introduce departamento a borrar y ponemos letras
+                            break;
+                        case ELIMINAR_DATOSCATEGORIA://Error de diferencias mayus minus
+                            borrarCategoriaProfesional();
+                            break;
+                    }
+                    break;
+                default://Hacer try catch por strings
+                    System.out.println("Opción incorrecta, introdúcela de nuevo.");
+                    System.out.println();
+            }
+        } while (programa);
+
+    }
 }
