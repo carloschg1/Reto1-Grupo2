@@ -73,7 +73,7 @@ public class Reto1 {
      * La funcion lee el fichero que contiene los datos de los empleados y los carga en memoria
      */
     public static void leerEmpleados() throws IOException {
-        miFichero = new File("./Reto1-Grupo2-master/src/Empleados.csv");
+        miFichero = new File("./src/Empleados.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -93,7 +93,7 @@ public class Reto1 {
      */
     public static void leerDepartamentos() throws IOException {
 
-        miFichero = new File("./Reto1-Grupo2-master/src/Departamentos.csv");
+        miFichero = new File("./src/Departamentos.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -114,7 +114,7 @@ public class Reto1 {
 
     public static void leerCategorias() throws IOException {
 
-        miFichero = new File("./Reto1-Grupo2-master/src/CategoriasProfesionales.csv");
+        miFichero = new File("./src/CategoriasProfesionales.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -381,7 +381,7 @@ public class Reto1 {
     public static void guardarEmpleados() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./Reto1-Grupo2-master/src/Empleados.csv");
+        miFichero = new File("./src/Empleados.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -422,7 +422,7 @@ public class Reto1 {
     public static void guardarDepartamentos() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./Reto1-Grupo2-master/src/Departamentos.csv");
+        miFichero = new File("./src/Departamentos.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -447,7 +447,7 @@ public class Reto1 {
     public static void guardarCotizacion() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./Reto1-Grupo2-master/src/Cotizacion.csv");
+        miFichero = new File("./src/Cotizacion.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -472,7 +472,7 @@ public class Reto1 {
     public static void guardarHoras() throws IOException {
         //Funcion para guardar los datos en el archivo csv
 
-        miFichero = new File("./Reto1-Grupo2-master/src/Horas.csv");
+        miFichero = new File("./src/Horas.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -694,7 +694,7 @@ public class Reto1 {
      * La funcion permite leer los grupos de cotizacion de y cargarlos en memoria
      */
     public static void leerCotizacion() throws IOException {
-        miFichero = new File("./Reto1-Grupo2-master/src/Cotizacion.csv");
+        miFichero = new File("./src/Cotizacion.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -798,7 +798,7 @@ public class Reto1 {
      */
 
     public static void leerHoras() throws IOException {
-        miFichero = new File("./Reto1-Grupo2-master/src/Horas.csv");
+        miFichero = new File("./src/Horas.csv");
         if (!miFichero.exists()) {
             System.out.println("El fichero no existe");
         }
@@ -873,7 +873,7 @@ public class Reto1 {
     public static void guardarCategorias() {
 
         try {
-            miFichero = new File("./Reto1-Grupo2-master/src/CategoriasProfesionales.csv");
+            miFichero = new File("./src/CategoriasProfesionales.csv");
             if (!miFichero.exists()) {
                 System.out.println("El fichero no existe");
             }
