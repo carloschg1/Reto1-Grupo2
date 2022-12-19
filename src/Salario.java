@@ -14,3 +14,4 @@ public class Salario {
         return dinero;
     }
 }
+

@@ -26,6 +26,7 @@ public class Empleados {
         this.email = email;
     }
 
+    
     public int getIdDep() {
         return idDep;
     }

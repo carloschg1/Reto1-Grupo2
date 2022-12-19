@@ -11,6 +11,7 @@ public class Departamentos {
         return idDep;
     }
 
+    
     public String getNombreDep() {
         return nombreDep;
     }
