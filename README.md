@@ -5,7 +5,7 @@ Institrucions bàsiques d'execució.
 Hem de posar els arxius csv y java en la carpeta src/ del projecte.
 
 Per executar el programa ho farem desde IntelliJ o desde el archiu Reto1.jar posant en la terminal java -jar Reto1.jar
-
+ 
 Altra opcio es obrir el projecte desde (IntelliJ) on seguirem aquesta ruta File → Open → y seleccionarem la carpeta corresponent al projecte.
 
 Després per executar-lo podem fer la combinació de tecles → Mayús + F10 o bé desde el botó de Run que podem veure dalt a la dreta.
