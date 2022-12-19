@@ -1,4 +1,4 @@
-#README Reto 1 - Grup 2.
+README Reto 1 - Grup 2.
 
 Institrucions bàsiques d'execució.
 
